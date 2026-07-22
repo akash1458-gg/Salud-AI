@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salud AI — Symptom Triage & Chronic Disease Companion</title>
+  <meta name="description" content="AI-powered health companion for symptom triage and chronic disease self-management">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <nav id="main-nav">
+    <div class="nav-container">
+      <a class="nav-logo" href="#">
+        <svg viewBox="0 0 40 40" fill="none" style="width:24px; height:24px; flex-shrink:0;"><circle cx="20" cy="20" r="19" stroke="#2F6F63" stroke-width="1.5"/><path d="M8 20h6l3-9 4 18 3-9h8" stroke="#2F6F63" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Salud AI
+      </a>
+      <div class="nav-links">
+        <a class="nav-link active" data-section="hero">Home</a>
+        <a class="nav-link" data-section="triage">Symptom Check</a>
+        <a class="nav-link" data-section="dashboard">Dashboard</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span id="nav-user-label" style="font-size: 13.5px; color: var(--color-text-dim); font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">👤 Guest</span>
+        <select id="profile-select" class="form-select form-select--sm" style="width: 130px; cursor: pointer; padding: 4px 8px; font-weight: 500; height: 32px; border-radius: 6px;">
+          <option value="Self">Self (Primary)</option>
+          <option value="Sarah">Sarah (Spouse)</option>
+          <option value="Leo">Leo (Child)</option>
+          <option value="new">+ Add Profile</option>
+        </select>
+        <button class="nav-settings-btn" id="settings-btn" title="Settings" style="margin-left: 0;">⚙️</button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero-section" class="section active" style="overflow: hidden; position: relative;">
+    <!-- Animated EKG background line -->
+    <svg class="ekg-line" viewBox="0 0 1200 120" style="position:absolute; left:0; top:50%; width:100%; height:120px; opacity:0.12; pointer-events:none; transform:translateY(-50%);"><path d="M0 60 L300 60 L340 20 L380 100 L420 60 L600 60 L640 35 L680 85 L720 60 L900 60 L940 25 L980 95 L1020 60 L1200 60" stroke="#2F6F63" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1800" stroke-dashoffset="1800" style="animation: draw 4s ease-out forwards;" /></svg>
+
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          AI-Powered Symptom Intelligence — 100% Offline
+        </div>
+        <h1 class="hero-title">Your symptoms,<br><span class="hero-title-accent">understood instantly.</span></h1>
+        <p class="hero-subtitle">Salud AI analyzes symptoms against clinical decision trees, tells you whether to self-care, see a doctor, or get help now — with detailed treatment plans, home remedies, and medication guidance. All without an internet connection.</p>
+        <div class="hero-cta-group">
+          <button class="glow-btn glow-btn--lg" data-navigate="triage">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Start Symptom Check
+          </button>
+          <button class="glow-btn glow-btn--outline glow-btn--lg" data-navigate="dashboard">View Dashboard</button>
+        </div>
+        <div class="hero-trust-badges">
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2F6F63" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Privacy First
+          </div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2F6F63" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            No API Required
+          </div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2F6F63" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Evidence-Based
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-container">
+        <div class="hero-image-glow"></div>
+        <img src="hero_art.png" alt="Salud AI — Intelligent Health Companion" class="hero-image" />
+        <div class="hero-image-badge">
+          <span class="hero-badge-dot"></span>
+          Powered by Clinical Decision Trees
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature Cards Row -->
+    <div class="hero-features-row">
+      <div class="hero-feature-card">
+        <div class="hero-feature-icon">🔬</div>
+        <h3 class="hero-feature-title">Symptom Triage</h3>
+        <p class="hero-feature-desc">Select body regions, describe symptoms, and get instant clinical assessments with treatment protocols.</p>
+      </div>
+      <div class="hero-feature-card">
+        <div class="hero-feature-icon">💊</div>
+        <h3 class="hero-feature-title">Treatment Plans</h3>
+        <p class="hero-feature-desc">Detailed home remedies, OTC medication guidance, dietary advice, and 24-hour care plans — all offline.</p>
+      </div>
+      <div class="hero-feature-card">
+        <div class="hero-feature-icon">📊</div>
+        <h3 class="hero-feature-title">Health Dashboard</h3>
+        <p class="hero-feature-desc">Track vitals, medications, symptom diaries, and get AI-powered health trend insights over time.</p>
+      </div>
+    </div>
+
+    <p class="hero-fineprint">⚠️ Not a replacement for professional medical advice. Salud AI always directs urgent symptoms to a human.</p>
+  </section>
+
+  <section id="triage-section" class="section">
+    <div class="section-header">
+      <h2 class="section-title">Symptom <span class="gradient-text">Triage</span></h2>
+      <p class="section-subtitle">Select affected areas on the body map, describe your symptoms, and let AI analyze them</p>
+    </div>
+    <div class="triage-container">
+      <div class="body-map-panel glass-card">
+        <h3 class="panel-title">Select Affected Area</h3>
+        <div class="body-map-wrapper" id="body-map-container">
+          <!-- SVG body silhouette inserted by JS (symptom-triage.js) -->
+        </div>
+        <div class="selected-regions" id="selected-regions">
+          <!-- Chips for selected regions appear here -->
+        </div>
+      </div>
+      <div class="interaction-panel">
+        <div class="symptom-selector glass-card" id="symptom-selector">
+          <h3 class="panel-title">Describe Symptoms</h3>
+          <div class="symptom-chips" id="symptom-chips">
+            <!-- Symptom chips populated by JS based on selected region -->
+          </div>
+          <div class="custom-symptom-input">
+            <input type="text" id="custom-symptom" class="form-input" placeholder="Type a symptom...">
+            <button class="glow-btn glow-btn--outline" id="add-symptom-btn">+ Add</button>
+          </div>
+          <div class="severity-group">
+            <label class="form-label">Severity</label>
+            <div class="severity-slider-container">
+              <input type="range" id="severity-slider" class="severity-slider" min="1" max="5" value="3">
+              <div class="severity-labels">
+                <span>Mild</span><span>Moderate</span><span>Severe</span>
+              </div>
+            </div>
+          </div>
+          <div class="duration-group form-group">
+            <label class="form-label">Duration</label>
+            <select id="duration-select" class="form-select">
+              <option value="hours">A few hours</option>
+              <option value="1day">About a day</option>
+              <option value="days" selected>A few days</option>
+              <option value="1week">About a week</option>
+              <option value="weeks">Several weeks</option>
+              <option value="months">Months or more</option>
+            </select>
+          </div>
+          <button class="glow-btn analyze-btn" id="analyze-btn" disabled>🔬 Analyze Symptoms</button>
+        </div>
+
+        <div class="glass-card" id="intake-questionnaire" style="display:none; flex-direction:column; gap:20px; animation: scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--glass-border); padding-bottom:12px;">
+            <div>
+              <h3 class="panel-title">Clinical Intake Assessment</h3>
+              <span id="intake-progress-text" style="font-size:0.8rem; color:var(--color-primary); font-weight:500;">Question 1 of 4</span>
+            </div>
+            <button class="chat-close-btn" id="intake-close-btn">✕</button>
+          </div>
+          <!-- Progress bar -->
+          <div style="width:100%; height:6px; background:var(--bg-surface-hover); border-radius:var(--radius-full); overflow:hidden;">
+            <div id="intake-progress-bar" style="width:25%; height:100%; background:var(--color-primary); transition:width 0.3s ease; box-shadow:0 0 10px var(--color-primary-glow);"></div>
+          </div>
+          <!-- Question text -->
+          <p id="intake-question-text" style="font-size:1.1rem; min-height:60px; display:flex; align-items:center; color:var(--color-text-bright); font-weight:500; line-height:1.5;">
+            Is this the first time you've experienced these symptoms?
+          </p>
+          <!-- Response buttons -->
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+            <button class="glow-btn" id="intake-yes-btn" style="width:100%; justify-content:center;">Yes</button>
+            <button class="glow-btn glow-btn--secondary" id="intake-no-btn" style="width:100%; justify-content:center;">No</button>
+            <button class="glow-btn glow-btn--outline" id="intake-unsure-btn" style="width:100%; justify-content:center;">I'm Not Sure</button>
+          </div>
+          <button class="glow-btn glow-btn--outline glow-btn--sm" id="intake-back-btn" style="margin-top:10px; width:fit-content; border-color:var(--glass-border); color:var(--color-text-dim);">← Back</button>
+        </div>
+        
+        <div class="chat-container glass-card" id="chat-container" style="display:none;">
+          <div class="chat-header">
+            <div class="chat-ai-avatar">🤖</div>
+            <div>
+              <h3 class="panel-title">Salud AI</h3>
+              <span class="chat-status" id="chat-status">Online</span>
+            </div>
+            <button class="chat-close-btn" id="chat-close-btn">✕</button>
+          </div>
+          <div class="chat-messages" id="chat-messages">
+            <!-- Chat messages populated by JS -->
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="chat-input" class="form-input" placeholder="Ask a follow-up question...">
+            <button class="chat-send-btn" id="chat-send-btn">➤</button>
+          </div>
+        </div>
+
+        <div class="triage-result" id="triage-result" style="display:none;">
+          <!-- Result card populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard-section" class="section">
+    <div class="section-header">
+      <h2 class="section-title">Health <span class="gradient-text">Dashboard</span></h2>
+      <p class="section-subtitle">Track your vitals, manage medications, and get AI-powered health insights</p>
+    </div>
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <div class="condition-selector">
+          <label class="form-label">My Condition</label>
+          <select id="condition-select" class="form-select">
+            <option value="general">General Health</option>
+            <option value="diabetes">Diabetes</option>
+            <option value="hypertension">Hypertension</option>
+            <option value="asthma">Asthma</option>
+            <option value="heart">Heart Disease</option>
+          </select>
+        </div>
+      </div>
+      <div class="dashboard-grid">
+        <div class="glass-card dashboard-card" id="health-score-card">
+          <h3 class="card-title">Health Score</h3>
+          <div class="health-score-container">
+            <svg id="health-score-svg" viewBox="0 0 200 200" class="health-score-svg"></svg>
+            <div class="health-score-label" id="health-score-label">--</div>
+          </div>
+          <p class="health-score-desc" id="health-score-desc">Log vitals to calculate your score</p>
+        </div>
+        
+        <div class="glass-card dashboard-card" id="vitals-chart-card">
+          <div class="card-header">
+            <h3 class="card-title">Vitals Trend</h3>
+            <select id="chart-vital-select" class="form-select form-select--sm">
+              <option value="heartRate">Heart Rate</option>
+              <option value="bloodPressure">Blood Pressure</option>
+              <option value="bloodSugar">Blood Sugar</option>
+              <option value="weight">Weight</option>
+              <option value="temperature">Temperature</option>
+              <option value="oxygenSat">Oxygen Saturation</option>
+            </select>
+          </div>
+          <div class="chart-wrapper">
+            <svg id="vitals-chart-svg" class="vitals-chart"></svg>
+          </div>
+        </div>
+
+        <div class="glass-card dashboard-card" id="recent-vitals-card">
+          <div class="card-header">
+            <h3 class="card-title">Recent Vitals</h3>
+            <button class="glow-btn glow-btn--outline glow-btn--sm" id="add-vital-btn">+ Log Vital</button>
+          </div>
+          <div class="vitals-list" id="vitals-list">
+            <div class="empty-state">
+              <span class="empty-icon">📋</span>
+              <p>No vitals logged yet</p>
+              <p class="empty-hint">Click "Log Vital" to start tracking</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card dashboard-card" id="medications-card">
+          <div class="card-header">
+            <h3 class="card-title">Medications</h3>
+            <button class="glow-btn glow-btn--outline glow-btn--sm" id="add-med-btn">+ Add Med</button>
+          </div>
+          <div class="med-list" id="med-list">
+            <div class="empty-state">
+              <span class="empty-icon">💊</span>
+              <p>No medications added</p>
+              <p class="empty-hint">Track your medications here</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card dashboard-card" id="symptom-diary-card">
+          <div class="card-header">
+            <h3 class="card-title">📖 Symptom Diary</h3>
+            <button class="glow-btn glow-btn--outline glow-btn--sm" id="add-diary-btn">+ Log Symptom</button>
+          </div>
+          <div class="diary-list" id="diary-list" style="max-height: 300px; overflow-y: auto; padding-right: 5px;">
+            <div class="empty-state">
+              <span class="empty-icon">📝</span>
+              <p>No symptoms logged yet</p>
+              <p class="empty-hint">Track daily symptoms to identify wellness patterns</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card dashboard-card" id="ai-insights-card">
+          <div class="card-header">
+            <h3 class="card-title">🤖 AI Health Insights</h3>
+            <button class="glow-btn glow-btn--outline glow-btn--sm" id="get-insights-btn">Generate</button>
+          </div>
+          <div class="insights-content" id="insights-content">
+            <div class="empty-state">
+              <span class="empty-icon">🧠</span>
+              <p>Log some vitals first</p>
+              <p class="empty-hint">AI will analyze your health trends and provide personalized insights</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="api-key-modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h3 class="card-title">API Settings</h3>
+      <p class="form-label" style="margin: 16px 0;">Enter your Gemini API Key to enable AI features, or use Demo Mode.</p>
+      <div class="form-group">
+        <input type="password" id="api-key-input" class="form-input" placeholder="Enter API Key">
+      </div>
+      <div class="hero-cta-group" style="margin-bottom: 0;">
+        <button class="glow-btn" id="save-api-key-btn">Save Key</button>
+        <button class="glow-btn glow-btn--outline" id="demo-mode-btn">Demo Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="add-vital-modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h3 class="card-title" style="margin-bottom: 16px;">Log Vital</h3>
+      <div class="form-group">
+        <label class="form-label">Vital Type</label>
+        <select class="form-select" id="vital-type-select">
+          <option value="heartRate">Heart Rate</option>
+          <option value="bloodPressure">Blood Pressure</option>
+          <option value="bloodSugar">Blood Sugar</option>
+          <option value="weight">Weight</option>
+          <option value="temperature">Temperature</option>
+          <option value="oxygenSat">Oxygen Saturation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Value</label>
+        <input type="text" class="form-input" id="vital-value-input" placeholder="e.g. 120/80 or 75">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date & Time</label>
+        <input type="datetime-local" class="form-input" id="vital-date-input">
+      </div>
+      <button class="glow-btn" id="save-vital-btn" style="width: 100%;">Save Vital</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="add-med-modal">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h3 class="card-title" style="margin-bottom: 16px;">Add Medication</h3>
+      <div class="form-group">
+        <label class="form-label">Medication Name</label>
+        <input type="text" class="form-input" id="med-name-input" placeholder="e.g. Metformin">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Dosage</label>
+        <input type="text" class="form-input" id="med-dosage-input" placeholder="e.g. 500mg">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Frequency</label>
+        <select class="form-select" id="med-frequency-select">
+          <option value="daily">Daily</option>
+          <option value="twice_daily">Twice Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="as_needed">As Needed</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Time</label>
+        <input type="time" class="form-input" id="med-time-input">
+      </div>
+      <button class="glow-btn" id="save-med-btn" style="width: 100%;">Save Medication</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="add-profile-modal">
+    <div class="modal-content" style="max-width: 400px;">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h3 class="card-title" style="margin-bottom: 16px;">Add Family Profile</h3>
+      <div class="form-group">
+        <label class="form-label">Profile Name</label>
+        <input type="text" id="new-profile-name" class="form-input" placeholder="e.g. Leo">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Relationship</label>
+        <select id="new-profile-relation" class="form-select">
+          <option value="Self">Self</option>
+          <option value="Spouse">Spouse</option>
+          <option value="Child">Child</option>
+          <option value="Parent">Parent</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <button class="glow-btn" id="save-profile-btn" style="width: 100%; justify-content: center; margin-top: 15px;">Add Profile</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="log-diary-modal">
+    <div class="modal-content" style="max-width: 420px;">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h3 class="card-title" style="margin-bottom: 16px;">Log Symptom Entry</h3>
+      <div class="form-group">
+        <label class="form-label">Symptom / Feeling</label>
+        <input type="text" id="diary-symptom-input" class="form-input" placeholder="e.g. Headache or Fatigue">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Severity</label>
+        <div class="severity-slider-container">
+          <input type="range" id="diary-severity-slider" class="severity-slider" min="1" max="5" value="3">
+          <div class="severity-labels">
+            <span>Mild</span><span>Moderate</span><span>Severe</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes / Context</label>
+        <textarea id="diary-notes-input" class="form-input" style="height: 80px; resize: none; padding: 10px;" placeholder="Any triggers, foods, or details..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date & Time</label>
+        <input type="datetime-local" id="diary-date-input" class="form-input">
+      </div>
+      <button class="glow-btn" id="save-diary-btn" style="width: 100%; justify-content: center; margin-top: 15px;">Log Entry</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
+      <svg viewBox="0 0 40 40" fill="none" style="width: 50px; height: 50px; margin: 0 auto 16px auto;"><circle cx="20" cy="20" r="19" stroke="#2F6F63" stroke-width="1.5"/><path d="M8 20h6l3-9 4 18 3-9h8" stroke="#2F6F63" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3 class="card-title" style="font-size: 1.5rem; margin-bottom: 8px;">Welcome to Salud AI</h3>
+      <p class="form-label" style="margin-bottom: 24px; text-align: center;">Symptom Triage & Chronic Care Self-Management</p>
+      
+      <div class="form-group" style="text-align: left;">
+        <label style="display:block; margin-bottom:6px; font-size:13px; font-weight:500;">Email</label>
+        <input type="email" id="login-email" class="form-input" placeholder="e.g. itadori@salud.ai" value="itadori@salud.ai">
+      </div>
+      
+      <div class="form-group" style="text-align: left; margin-bottom: 24px;">
+        <label class="form-label" for="login-password">Password</label>
+        <input type="password" id="login-password" class="form-input" placeholder="••••••••" value="demo">
+      </div>
+      
+      <button class="glow-btn" id="login-submit-btn" style="width: 100%; justify-content: center; margin-bottom: 12px;">Sign In</button>
+      <button class="glow-btn glow-btn--outline" id="login-guest-btn" style="width: 100%; justify-content: center;">Continue as Guest</button>
+      
+      <p style="font-size: 11px; color: var(--color-text-dim); margin-top: 16px;">Demo details: email: <b>itadori@salud.ai</b>, password: <b>demo</b></p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="emergency-modal">
+    <div class="modal-content emergency-alert" style="max-width: 450px; text-align: center; border-color: var(--color-danger); box-shadow: 0 10px 40px rgba(226, 96, 79, 0.2);">
+      <div class="emergency-icon-container" style="margin: 0 auto 20px auto; width: 64px; height: 64px; background: rgba(226, 96, 79, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: pulse-danger 1.5s infinite;">
+        <span style="font-size: 32px;">🚨</span>
+      </div>
+      <h3 style="color: var(--color-danger); font-size: 1.6rem; margin-bottom: 12px; font-weight: 600;">CRITICAL MEDICAL ALERT</h3>
+      <p style="color: var(--color-text-bright); font-size: 1rem; line-height: 1.5; margin-bottom: 24px; font-weight: 500;">
+        Based on your symptoms, you may be experiencing a life-threatening medical emergency. <strong>Do not ignore these symptoms.</strong>
+      </p>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+        <button class="glow-btn btn-emergency-red" onclick="window.location.href='tel:112'" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 14px;">
+          📞 Call Ambulance (112 / 108)
+        </button>
+        <button class="glow-btn glow-btn--outline" onclick="window.open('https://www.google.com/maps/search/hospitals+near+me', '_blank')" style="width: 100%; justify-content: center; font-size: 1.05rem; padding: 12px;">
+          🏥 Find Nearby Hospitals
+        </button>
+      </div>
+      
+      <button data-close-modal style="background: none; border: none; color: var(--color-text-dim); text-decoration: underline; cursor: pointer; font-size: 0.9rem; padding: 8px;">
+        I understand the risks, close this alert.
+      </button>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <footer style="text-align: center; padding: 24px; color: var(--color-text-dim); font-size: 0.8rem;">
+    ⚠️ This is an AI assistant and not a substitute for professional medical advice. Always consult a healthcare provider for medical decisions.
+  </footer>
+
+  <script src="js/charts.js"></script>
+  <script src="js/disease-db.js"></script>
+  <script src="js/ai-engine.js"></script>
+  <script src="js/symptom-triage.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

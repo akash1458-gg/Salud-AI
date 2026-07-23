@@ -191,7 +191,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 ## 🙏 Acknowledgments
 
 - Clinical guidelines referenced from **CDC**, **WHO**, **Mayo Clinic**, and **NHS**
-- Built with ❤️ for the hackathon
+- Built with ❤️
 
 ---
 
